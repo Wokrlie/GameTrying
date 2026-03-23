@@ -3,14 +3,13 @@
 class Timer {
     public:
         Timer();
-        Timer(float cooldown);
+        Timer(float cooldown = 0.0f);
 
         void UpdateTimer();
         void ResetTimer();
         bool ItsTimeToDo();
 
-        Timer* operator&();
     private:
-        float cooldown;
-        float will_be_checked_cooldown;
+        float m_duration;
+        float m_remaining;
 };

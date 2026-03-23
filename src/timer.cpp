@@ -2,28 +2,19 @@
 
 #include <raylib.h>
 
-Timer::Timer() {
-    this->cooldown = 0.0f;
-    this->will_be_checked_cooldown = 0.0f;
-}
-
-Timer::Timer(float cooldown) {
-    this->cooldown = cooldown;
-    this->will_be_checked_cooldown = cooldown;
+Timer::Timer(float duration) :
+    m_duration(duration),
+    m_remaining(duration) {
 }
 
 bool Timer::ItsTimeToDo() {
-    return will_be_checked_cooldown <= 0;
-}
-
-Timer *Timer::operator&() {
-    return &Timer(this->cooldown);
+    return m_remaining <= 0;
 }
 
 void Timer::UpdateTimer() {
-    this->will_be_checked_cooldown -= GetFrameTime();
+    this->m_remaining -= GetFrameTime();
 }
 
 void Timer::ResetTimer() {
-    this->will_be_checked_cooldown = cooldown;
+    this->m_remaining = m_duration;
 }
