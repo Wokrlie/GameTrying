@@ -4,6 +4,6 @@ project(${PROJECT_NAME})
 
 find_package(raylib REQUIRED)
 
-set(SOURCES src/main.cpp src/timer.cpp)
+set(SOURCES src/main.cpp src/timer.cpp src/player.h)
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)

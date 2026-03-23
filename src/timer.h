@@ -2,7 +2,6 @@
 
 class Timer {
     public:
-        Timer();
         Timer(float cooldown = 0.0f);
 
         void UpdateTimer();
