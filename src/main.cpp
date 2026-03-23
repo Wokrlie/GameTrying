@@ -3,9 +3,11 @@
 #include <vector>
 
 #include "timer.h"
+#include "player.h"
 
 struct Instance {
     Timer timer;
+    Player player;
 };
 
 struct Properties {
@@ -22,13 +24,16 @@ struct Status {
 
 // IMPORTANT: The Update function shoudn't change the properties
 void Update(Status* status, Instance* instances, Properties* properties) {
-    instances->timer.UpdateTimer();
+    instances->timer.Update();
+    instances->player.Update();
+
     if (!instances->timer.ItsTimeToDo()) {
         return;
     }
     status->current_background_color = properties->
         background_colors.data()[GetRandomValue(0, properties->background_colors.size())];
-    instances->timer.ResetTimer();
+    
+    instances->timer.Reset();
 
 }
 

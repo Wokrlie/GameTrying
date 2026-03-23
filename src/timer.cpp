@@ -9,10 +9,10 @@ bool Timer::ItsTimeToDo() {
     return m_remaining <= 0;
 }
 
-void Timer::UpdateTimer() {
+void Timer::Update() {
     this->m_remaining -= GetFrameTime();
 }
 
-void Timer::ResetTimer() {
+void Timer::Reset() {
     this->m_remaining = m_duration;
 }
