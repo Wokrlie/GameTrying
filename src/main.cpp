@@ -1,16 +1,40 @@
 #include <iostream>
 #include <raylib.h>
+#include <vector>
+
+#include "timer.h"
+
+struct Instance {
+    Timer timer;
+};
 
 struct Properties {
     int window_default_width;
     int window_default_height;
     const char* window_title;
+
+    std::vector<Color> background_colors;
 };
 
-struct Status {};
+struct Status {
+    Color current_background_color;
+};
 
-void Update(Status* status) {}
-void Draw(Status* status) {}
+// IMPORTANT: The Update function shoudn't change the properties
+void Update(Status* status, Instance* instances, Properties* properties) {
+    instances->timer.UpdateTimer();
+    if (!instances->timer.ItsTimeToDo()) {
+        return;
+    }
+    status->current_background_color = properties->
+        background_colors.data()[GetRandomValue(0, properties->background_colors.size())];
+    instances->timer.ResetTimer();
+
+}
+
+void Draw(Status* status) {
+    ClearBackground(status->current_background_color);
+}
 
 int main() {
     Properties properties;
@@ -18,11 +42,19 @@ int main() {
     properties.window_default_height = 720;
     properties.window_title = "Game";
 
+    properties.background_colors = {RAYWHITE, WHITE, GRAY, GREEN, RED, BLUE, YELLOW};
+
     Status status;
+    Instance instances;
+
+    instances.timer = Timer(1.0f);
     
     InitWindow(properties.window_default_width, properties.window_default_height, properties.window_title);
+
+    SetTargetFPS(60);
     while (!WindowShouldClose()) {
-        Update(&status);
+        Update(&status, &instances, &properties);
+
         BeginDrawing();
         Draw(&status);
         EndDrawing();
