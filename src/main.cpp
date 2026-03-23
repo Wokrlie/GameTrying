@@ -37,8 +37,9 @@ void Update(Status* status, Instance* instances, Properties* properties) {
 
 }
 
-void Draw(Status* status) {
+void Draw(Status* status, Instance* instances) {
     ClearBackground(status->current_background_color);
+    instances->player.Draw();
 }
 
 int main() {
@@ -61,7 +62,7 @@ int main() {
         Update(&status, &instances, &properties);
 
         BeginDrawing();
-        Draw(&status);
+        Draw(&status, &instances);
         EndDrawing();
     }
     CloseWindow();
