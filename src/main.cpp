@@ -30,8 +30,7 @@ void Update(Status* status, Instance* instances, Properties* properties) {
     if (!instances->timer.ItsTimeToDo()) {
         return;
     }
-    status->current_background_color = properties->
-        background_colors.data()[GetRandomValue(0, properties->background_colors.size())];
+    status->current_background_color = properties->background_colors[0];
     
     instances->timer.Reset();
 
@@ -48,12 +47,13 @@ int main() {
     properties.window_default_height = 720;
     properties.window_title = "Game";
 
-    properties.background_colors = {RAYWHITE, WHITE, GRAY, GREEN, RED, BLUE, YELLOW};
+    properties.background_colors = {BLACK, RAYWHITE, GRAY, GREEN, RED, BLUE, YELLOW};
 
     Status status;
     Instance instances;
 
     instances.timer = Timer(1.0f);
+    instances.player = Player({0, 0}, 10);
     
     InitWindow(properties.window_default_width, properties.window_default_height, properties.window_title);
 
