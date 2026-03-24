@@ -12,5 +12,5 @@ void Player::Update() {
 }
 
 void Player::Draw() {
-    DrawRectangle(m_pos.x, m_pos.y, 32, 64, GREEN);
+    DrawRectangle(m_pos.x, m_pos.y, 64, 64, GREEN);
 }

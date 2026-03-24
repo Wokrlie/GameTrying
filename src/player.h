@@ -3,7 +3,7 @@
 
 class Player {
     public:
-        Player(Vector2 pos={0, 0}, int speed = 100);
+        Player(Vector2 pos={0, 0}, int speed=5);
 
         void Update();
         void Draw();

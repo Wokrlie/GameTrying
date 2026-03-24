@@ -16,6 +16,8 @@ struct Properties {
     const char* window_title;
 
     std::vector<Color> background_colors;
+
+    int player_speed;
 };
 
 struct Status {
@@ -47,13 +49,21 @@ int main() {
     properties.window_default_height = 720;
     properties.window_title = "Game";
 
-    properties.background_colors = {BLACK, RAYWHITE, GRAY, GREEN, RED, BLUE, YELLOW};
+    properties.background_colors = {GRAY, GREEN, RED, BLUE, YELLOW};
+
+    properties.player_speed = 5;
 
     Status status;
     Instance instances;
 
     instances.timer = Timer(1.0f);
-    instances.player = Player({0, 0}, 10);
+    instances.player = Player(
+        {
+            static_cast<int>(properties.window_default_width / 2),
+            static_cast<int>(properties.window_default_height / 2)
+        },
+        properties.player_speed
+    );
     
     InitWindow(properties.window_default_width, properties.window_default_height, properties.window_title);
 
