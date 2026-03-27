@@ -24,6 +24,32 @@ struct Status {
     Color current_background_color;
 };
 
+void Init(Properties* properties, Instance* instances) {
+    properties->window_default_width = 1280;
+    properties->window_default_height = 720;
+    properties->window_title = "Game";
+
+    properties->background_colors = {GRAY, GREEN, RED, BLUE, YELLOW};
+
+    properties->player_speed = 5;
+
+     instances->timer = Timer(1.0f);
+    instances->player = Player(
+        {
+            static_cast<int>(properties->window_default_width / 2),
+            static_cast<int>(properties->window_default_height / 2)
+        },
+        properties->player_speed,
+        (char*)"../assets/player.png"
+    );
+    
+    InitWindow(
+        properties->window_default_width, 
+        properties->window_default_height, 
+        properties->window_title
+    );
+}
+
 // IMPORTANT: The Update function shoudn't change the properties
 void Update(Status* status, Instance* instances, Properties* properties) {
     instances->timer.Update();
@@ -45,27 +71,8 @@ void Draw(Status* status, Instance* instances) {
 
 int main() {
     Properties properties;
-    properties.window_default_width = 1280;
-    properties.window_default_height = 720;
-    properties.window_title = "Game";
-
-    properties.background_colors = {GRAY, GREEN, RED, BLUE, YELLOW};
-
-    properties.player_speed = 5;
-
     Status status;
     Instance instances;
-
-    instances.timer = Timer(1.0f);
-    instances.player = Player(
-        {
-            static_cast<int>(properties.window_default_width / 2),
-            static_cast<int>(properties.window_default_height / 2)
-        },
-        properties.player_speed
-    );
-    
-    InitWindow(properties.window_default_width, properties.window_default_height, properties.window_title);
 
     SetTargetFPS(60);
     while (!WindowShouldClose()) {
