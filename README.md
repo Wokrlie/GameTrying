@@ -1,8 +1,8 @@
 # GameTrying
 
-Required:
-    C++,
-    raylib
+Required:  
+    C++,  
+    raylib  
 
 Please named the file with snake_case,  
        named the method with snake_case,  
