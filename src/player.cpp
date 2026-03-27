@@ -2,12 +2,15 @@
 #include "utils.h"
 
 #include <raylib.h>
+#include <string>
+#include <stdexcept>
 
-Player::Player(Vector2 pos, int speed, char* texture_path) : m_pos(pos), 
+Player::Player(Vector2 pos, int speed, std::string texture_path) : 
+    m_pos(pos), 
     m_speed(speed), 
-    m_texture(Texture2D()) {
-    LoadTextureFromPNG(texture_path, &m_texture);
-}
+    m_texture(Texture2D()),
+    m_texture_path(texture_path)
+    { InitResource(); }
 
 void Player::Update() {
     if(IsKeyDown(KEY_W)) m_pos.y -= 1 * m_speed;
@@ -18,4 +21,12 @@ void Player::Update() {
 
 void Player::Draw() {
     DrawTexture(m_texture, m_pos.x, m_pos.y, WHITE);
+}
+
+void Player::InitResource() {
+    load_resource();
+}
+
+void Player::load_resource() {
+    LoadTextureFromPNG(m_texture_path, &m_texture);
 }

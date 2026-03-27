@@ -1,4 +1,5 @@
 #pragma once
 #include <raylib.h>
+#include <string>  
 
-Texture2D LoadTextureFromPNG(char* file_path, Texture2D* texture);
+void LoadTextureFromPNG(std::string file_path, Texture2D* texture);
