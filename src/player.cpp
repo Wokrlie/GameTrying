@@ -10,14 +10,20 @@ Player::Player(Vector2 pos, int speed, std::string texture_path) :
     m_pos(pos), 
     m_speed(speed), 
     m_texture(Texture2D()),
-    m_texture_path(texture_path)
+    m_texture_path(texture_path),
+    m_collision_direction(None)
     { InitResource(); }
 
-void Player::Update() {
-    if(IsKeyDown(KEY_W) && m_collision_direction != Up ) m_pos.y -= 1 * m_speed;
-    if(IsKeyDown(KEY_S) && m_collision_direction != Down) m_pos.y += 1 * m_speed;
-    if(IsKeyDown(KEY_A) && m_collision_direction != Left) m_pos.x -= 1 * m_speed;
-    if(IsKeyDown(KEY_D) && m_collision_direction != Right) m_pos.x += 1 * m_speed;
+Player::~Player() {
+    UnloadTexture(m_texture);
+}
+
+void Player::Update(float dt) {
+    TraceLog(LOG_INFO, "The collision direction: " + (int)m_collision_direction);
+    if(IsKeyDown(KEY_W) && m_collision_direction != Up ) m_pos.y -= 1 * m_speed * dt;
+    if(IsKeyDown(KEY_S) && m_collision_direction != Down) m_pos.y += 1 * m_speed * dt;
+    if(IsKeyDown(KEY_A) && m_collision_direction != Left) m_pos.x -= 1 * m_speed * dt;
+    if(IsKeyDown(KEY_D) && m_collision_direction != Right) m_pos.x += 1 * m_speed * dt;
 }
 
 void Player::Draw() {

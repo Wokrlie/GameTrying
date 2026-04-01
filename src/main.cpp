@@ -23,7 +23,7 @@ void Init(Properties *properties, Instance *instance_manager)
 
     properties->background_colors = {GRAY, GREEN, RED, BLUE, YELLOW};
 
-    properties->player_speed = 5;
+    properties->player_speed = 500;
 
     instance_manager->Init(properties);
 }
@@ -31,8 +31,9 @@ void Init(Properties *properties, Instance *instance_manager)
 // IMPORTANT: The Update function shoudn't change the properties
 void Update(Status *status, Instance *instances, Properties *properties)
 {
+    float dt = GetFrameTime();
     instances->GetTimer()->Update();
-    instances->GetPlayer()->Update();
+    instances->GetPlayer()->Update(dt);
 
     if (CheckCollisionRecs(
             instances->GetPlayer()->GetRect(),

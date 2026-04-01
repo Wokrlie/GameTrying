@@ -10,8 +10,9 @@ class Player {
             int speed=5, 
             std::string texture_path = std::string("")
         );
+        ~Player();
 
-        void Update();
+        void Update(float dt);
         void Draw();
 
         void IsCollision(Direction direction, Shape object_shape);
