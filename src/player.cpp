@@ -1,5 +1,6 @@
 #include "player.h"
 #include "utils.h"
+#include "settings.h"
 
 #include <raylib.h>
 #include <string>
@@ -13,14 +14,24 @@ Player::Player(Vector2 pos, int speed, std::string texture_path) :
     { InitResource(); }
 
 void Player::Update() {
-    if(IsKeyDown(KEY_W)) m_pos.y -= 1 * m_speed;
-    if(IsKeyDown(KEY_S)) m_pos.y += 1 * m_speed;
-    if(IsKeyDown(KEY_A)) m_pos.x -= 1 * m_speed;
-    if(IsKeyDown(KEY_D)) m_pos.x += 1 * m_speed;
+    if(IsKeyDown(KEY_W) && m_collision_direction != Up ) m_pos.y -= 1 * m_speed;
+    if(IsKeyDown(KEY_S) && m_collision_direction != Down) m_pos.y += 1 * m_speed;
+    if(IsKeyDown(KEY_A) && m_collision_direction != Left) m_pos.x -= 1 * m_speed;
+    if(IsKeyDown(KEY_D) && m_collision_direction != Right) m_pos.x += 1 * m_speed;
 }
 
 void Player::Draw() {
-    DrawTexture(m_texture, m_pos.x, m_pos.y, WHITE);
+    Rectangle sourceRec = { 0.0f, 0.0f, (float)m_texture.width, (float)m_texture.height };
+    Rectangle destRec = { m_pos.x, m_pos.y, m_texture.width/2.0f, m_texture.height/2.0f };
+    Vector2 origin = { (float)m_texture.width, (float)m_texture.height }; // Center point
+    
+    DrawTexturePro(m_texture, sourceRec, destRec, origin, 0.0f, WHITE);
+}
+
+void Player::IsCollision(Direction direction, Shape object_shape) {
+    m_is_collision = true;
+    m_collision_direction = direction;
+    m_collision_target_shape = object_shape;
 }
 
 void Player::InitResource() {
@@ -29,4 +40,8 @@ void Player::InitResource() {
 
 void Player::load_resource() {
     LoadTextureFromPNG(m_texture_path, &m_texture);
+}
+
+Rectangle Player::GetRect() {
+    return { m_pos.x, m_pos.y, m_texture.width/2.0f, m_texture.height/2.0f };
 }

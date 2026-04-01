@@ -14,6 +14,8 @@ void Instance::Init(Properties* properties) {
         properties->player_speed,
         player_image_path
     );
+
+    m_ground = std::make_unique<Actor>(Vector2{100, 0}, Vector2{500, 40});
 }
 
 Timer* Instance::GetTimer() {
@@ -22,4 +24,8 @@ Timer* Instance::GetTimer() {
 
 Player* Instance::GetPlayer() {
     return m_player.get();
+}
+
+Actor* Instance::GetGround() {
+    return m_ground.get();
 }
