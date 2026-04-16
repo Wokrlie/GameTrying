@@ -1,25 +1,29 @@
 #pragma once
 #include <raylib.h>
+#include <box2d/box2d.h>
 #include <string>
 
 #include "settings.h"
+#include "actor.h"
 
-class Player {
+class Player : public Actor {
     public:
-        Player(Vector2 pos={0, 0},
-            int speed=5, 
-            std::string texture_path = std::string("")
+        Player(Vector2 pos,
+            int speed,
+            std::string texture_path,
+            b2WorldId world_id
         );
+         Player() = delete;
         ~Player();
 
-        void Update(float dt);
-        void Draw();
+        void Update(float dt) override;
+        void Draw() override;
 
         Rectangle GetRect();
 
     private:
-        void InitResource(); // This function will call the other resource manage function.
-        void load_resource();
+        void InitResource() override; // This function will call the other resource manage function.
+        void InitPhysics(Vector2 pos, b2WorldId world_id) override;
         
     private:
         Vector2 m_pos;
@@ -28,7 +32,6 @@ class Player {
         Texture2D m_texture;
         std::string m_texture_path;
 
-        bool m_is_collision;
-        Direction m_collision_direction;
-        Shape m_collision_target_shape;
+        b2BodyDef m_body_def;
+        b2BodyId m_body_id;
 };

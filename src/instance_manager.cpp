@@ -7,6 +7,9 @@ Instance::Instance() {}
 void Instance::Init(Properties* properties) {
     m_timer = std::make_unique<Timer>(1.0f);
 
+    m_world_def = std::make_unique<b2WorldDef>(b2DefaultWorldDef());
+    m_world_id = b2CreateWorld(m_world_def.get());
+
     std::string player_image_path = CURRENT_PATH + "/assets/player.png";
     m_player = std::make_unique<Player>(
         Vector2{
@@ -14,7 +17,8 @@ void Instance::Init(Properties* properties) {
             static_cast<int>(properties->window_default_height / 2)
         },
         properties->player_speed,
-        player_image_path
+        player_image_path,
+        m_world_id
     );
 
     m_ground = std::make_unique<Actor>(Vector2{450, 500}, Vector2{500, 40});
@@ -25,7 +29,7 @@ void Instance::Update(Status *status, Properties *properties) {
     GetTimer()->Update();
     GetPlayer()->Update(dt);
 
-    GetGround()->Update();
+    GetGround()->Update(dt);
 
     if (GetTimer()->ItsTimeToDo())
     {
