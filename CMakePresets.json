@@ -1,0 +1,95 @@
+{
+"version": 3,
+    "configurePresets": [
+        {
+            "name": "linux-ninja-debug",
+            "displayName": "Linux Ninja Debug",
+            "description": "使用 Ninja 生成器，Debug 构建",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_STANDARD": "17",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            },
+            "environment": {
+                "CC": "gcc",
+                "CXX": "g++"
+            }
+        },
+        {
+            "name": "linux-ninja-release",
+            "displayName": "Linux Ninja Release",
+            "description": "使用 Ninja 生成器，Release 构建",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_CXX_STANDARD": "17",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "OFF"
+            },
+            "environment": {
+                "CC": "gcc",
+                "CXX": "g++"
+            }
+        },
+        {
+            "name": "linux-make-debug",
+            "displayName": "Linux Unix Makefiles Debug",
+            "description": "使用 Unix Makefiles 生成器，Debug 构建",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_STANDARD": "17",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            },
+            "environment": {
+                "CC": "gcc",
+                "CXX": "g++"
+            }
+        },
+        {
+            "name": "linux-make-release",
+            "displayName": "Linux Unix Makefiles Release",
+            "description": "使用 Unix Makefiles 生成器，Release 构建",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_CXX_STANDARD": "17",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "OFF"
+            },
+            "environment": {
+                "CC": "gcc",
+                "CXX": "g++"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "ninja-debug",
+            "configurePreset": "linux-ninja-debug",
+            "displayName": "Build with Ninja (Debug)",
+            "description": "使用 Ninja 构建 Debug 版本"
+        },
+        {
+            "name": "ninja-release",
+            "configurePreset": "linux-ninja-release",
+            "displayName": "Build with Ninja (Release)",
+            "description": "使用 Ninja 构建 Release 版本"
+        },
+        {
+            "name": "make-debug",
+            "configurePreset": "linux-make-debug",
+            "displayName": "Build with Make (Debug)",
+            "description": "使用 Unix Makefiles 构建 Debug 版本"
+        },
+        {
+            "name": "make-release",
+            "configurePreset": "linux-make-release",
+            "displayName": "Build with Make (Release)",
+            "description": "使用 Unix Makefiles 构建 Release 版本"
+        }
+    ]
+}
