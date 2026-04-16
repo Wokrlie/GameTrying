@@ -33,3 +33,9 @@ void Instance::Update(Status *status, Properties *properties) {
         GetTimer()->Reset();
     }
 }
+
+void Instance::Draw(Status *status, Properties *properties) {
+    ClearBackground(status->current_background_color);
+    GetGround()->Draw();
+    GetPlayer()->Draw();
+}
