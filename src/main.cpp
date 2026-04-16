@@ -36,9 +36,9 @@ void Draw(Status *status, Instance *instances, Properties* properties)
 
 int main()
 {
-    static Properties properties;
-    static Status status;
-    static Instance instances;
+    Properties properties;
+    Status status;
+    Instance instances;
 
     Init(&properties, &instances);
 
