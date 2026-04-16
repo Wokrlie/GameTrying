@@ -2,7 +2,7 @@
 
 Required:  
     C++,  
-    raylib，
+    raylib,  
     Box2D(box2d) 3.x,
 
 Please named the file with snake_case,  
