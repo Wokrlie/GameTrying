@@ -15,8 +15,6 @@ class Player {
         void Update(float dt);
         void Draw();
 
-        void IsCollision(Direction direction, Shape object_shape);
-
         Rectangle GetRect();
 
     private:

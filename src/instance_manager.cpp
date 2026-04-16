@@ -1,5 +1,7 @@
 #include "instance_manager.h"
 
+#include "utils.h"
+
 Instance::Instance() {}
 
 void Instance::Init(Properties* properties) {
@@ -15,17 +17,19 @@ void Instance::Init(Properties* properties) {
         player_image_path
     );
 
-    m_ground = std::make_unique<Actor>(Vector2{100, 0}, Vector2{500, 40});
+    m_ground = std::make_unique<Actor>(Vector2{450, 500}, Vector2{500, 40});
 }
 
-Timer* Instance::GetTimer() {
-    return m_timer.get();
-}
+void Instance::Update(Status *status, Properties *properties) {
+    float dt = GetFrameTime();
+    GetTimer()->Update();
+    GetPlayer()->Update(dt);
 
-Player* Instance::GetPlayer() {
-    return m_player.get();
-}
+    GetGround()->Update();
 
-Actor* Instance::GetGround() {
-    return m_ground.get();
+    if (GetTimer()->ItsTimeToDo())
+    {
+        status->current_background_color = properties->background_colors[0];
+        GetTimer()->Reset();
+    }
 }

@@ -7,12 +7,12 @@ namespace fs = std::filesystem;
 
 const std::string CURRENT_PATH = std::string(PROJECT_ROOT);
 
-enum Direction {
-    Up = 0,
+enum class Direction {
+    None = 0,
+    Up,
     Down,
     Left,
-    Right,
-    None
+    Right
 };
 
 enum Shape { 
@@ -28,4 +28,9 @@ struct Properties {
     std::vector<Color> background_colors;
 
     int player_speed;
+};
+
+struct Status
+{
+    Color current_background_color;
 };

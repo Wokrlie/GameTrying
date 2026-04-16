@@ -11,7 +11,7 @@ Player::Player(Vector2 pos, int speed, std::string texture_path) :
     m_speed(speed), 
     m_texture(Texture2D()),
     m_texture_path(texture_path),
-    m_collision_direction(None)
+    m_collision_direction(Direction::None)
     { InitResource(); }
 
 Player::~Player() {
@@ -19,11 +19,11 @@ Player::~Player() {
 }
 
 void Player::Update(float dt) {
-    TraceLog(LOG_INFO, "The collision direction: " + (int)m_collision_direction);
-    if(IsKeyDown(KEY_W) && m_collision_direction != Up ) m_pos.y -= 1 * m_speed * dt;
-    if(IsKeyDown(KEY_S) && m_collision_direction != Down) m_pos.y += 1 * m_speed * dt;
-    if(IsKeyDown(KEY_A) && m_collision_direction != Left) m_pos.x -= 1 * m_speed * dt;
-    if(IsKeyDown(KEY_D) && m_collision_direction != Right) m_pos.x += 1 * m_speed * dt;
+    TraceLog(LOG_INFO, "The collision direction: %d", (int)m_collision_direction);
+    if(IsKeyDown(KEY_W) && m_collision_direction != Direction::Up ) m_pos.y -= 1 * m_speed * dt;
+    if(IsKeyDown(KEY_S) && m_collision_direction != Direction::Down) m_pos.y += 1 * m_speed * dt;
+    if(IsKeyDown(KEY_A) && m_collision_direction != Direction::Left) m_pos.x -= 1 * m_speed * dt;
+    if(IsKeyDown(KEY_D) && m_collision_direction != Direction::Right) m_pos.x += 1 * m_speed * dt;
 }
 
 void Player::Draw() {
@@ -32,12 +32,6 @@ void Player::Draw() {
     Vector2 origin = { (float)m_texture.width, (float)m_texture.height }; // Center point
     
     DrawTexturePro(m_texture, sourceRec, destRec, origin, 0.0f, WHITE);
-}
-
-void Player::IsCollision(Direction direction, Shape object_shape) {
-    m_is_collision = true;
-    m_collision_direction = direction;
-    m_collision_target_shape = object_shape;
 }
 
 void Player::InitResource() {

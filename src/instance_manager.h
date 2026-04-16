@@ -10,10 +10,11 @@ class Instance {
     public:
         Instance();
         void Init(Properties* properties);
+        void Update(Status *status, Properties *properties);
 
-        Timer* GetTimer();
-        Player* GetPlayer();
-        Actor* GetGround();
+        Timer* GetTimer() { return m_timer.get(); }
+        Player* GetPlayer() { return m_player.get(); }
+        Actor* GetGround() { return m_ground.get(); }
     private:
         std::unique_ptr<Timer> m_timer;
         std::unique_ptr<Player> m_player;
