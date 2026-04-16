@@ -32,5 +32,5 @@ struct Properties {
 
 struct Status
 {
-    Color current_background_color;
+    Color current_background_color = GRAY;
 };

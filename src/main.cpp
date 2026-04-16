@@ -29,18 +29,16 @@ void Update(Status *status, Instance *instances, Properties *properties)
     instances->Update(status, properties);
 }
 
-void Draw(Status *status, Instance *instances)
+void Draw(Status *status, Instance *instances, Properties* properties)
 {
-    ClearBackground(status->current_background_color);
-    instances->GetPlayer()->Draw();
-    instances->GetGround()->Draw();
+    instances->Draw(status, properties);
 }
 
 int main()
 {
-    Properties properties;
-    Status status;
-    Instance instances;
+    static Properties properties;
+    static Status status;
+    static Instance instances;
 
     Init(&properties, &instances);
 
@@ -50,7 +48,7 @@ int main()
         Update(&status, &instances, &properties);
 
         BeginDrawing();
-        Draw(&status, &instances);
+        Draw(&status, &instances, &properties);
         EndDrawing();
     }
     CloseWindow();
