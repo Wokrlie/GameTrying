@@ -5,7 +5,7 @@
 #include "utils.h"
 #include "instance_manager.h"
 
-void Init(Properties *properties, Instance *instance_manager)
+void Init(Properties *properties)
 {
     properties->window_default_width = 1280;
     properties->window_default_height = 720;
@@ -19,8 +19,6 @@ void Init(Properties *properties, Instance *instance_manager)
     properties->background_colors = {GRAY, GREEN, RED, BLUE, YELLOW};
 
     properties->player_speed = 500;
-
-    instance_manager->Init(properties);
 }
 
 // IMPORTANT: The Update function shoudn't change the properties
@@ -38,18 +36,21 @@ int main()
 {
     Properties properties;
     Status status;
-    Instance instances;
 
-    Init(&properties, &instances);
+     Init(&properties); // We don't init instances manager here because it need an independent life cycle
 
     SetTargetFPS(60);
-    while (!WindowShouldClose())
     {
-        Update(&status, &instances, &properties);
+        Instance instances;
+        instances.Init(&properties);
 
-        BeginDrawing();
-        Draw(&status, &instances, &properties);
-        EndDrawing();
+        while (!WindowShouldClose())
+        {
+            Update(&status, &instances, &properties);
+            BeginDrawing();
+            Draw(&status, &instances, &properties);
+            EndDrawing();
+        }
     }
     CloseWindow();
     return 0;

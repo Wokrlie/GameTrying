@@ -16,7 +16,8 @@ Player::Player(Vector2 pos, int speed, std::string texture_path, b2WorldId world
 }
 
 Player::~Player() {
-    UnloadTexture(m_texture);
+    TraceLog(LOG_INFO, "Player destroyed");
+    if (m_texture.id != 0) UnloadTexture(m_texture);
 }
 
 void Player::Update(float dt) {

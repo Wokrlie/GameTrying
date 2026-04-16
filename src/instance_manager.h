@@ -11,6 +11,7 @@
 class Instance {
     public:
         Instance();
+        ~Instance();
         void Init(Properties* properties);
         void Update(Status *status, Properties *properties);
         void Draw(Status *status, Properties *properties);
