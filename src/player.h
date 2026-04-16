@@ -26,7 +26,6 @@ class Player : public Actor {
         void InitPhysics(Vector2 pos, b2WorldId world_id) override;
         
     private:
-        Vector2 m_pos;
         int m_speed;
         
         Texture2D m_texture;

@@ -8,7 +8,6 @@
 
 Player::Player(Vector2 pos, int speed, std::string texture_path, b2WorldId world_id) :
     Actor(pos, {1.0f, 1.0f}),  // Temp size.
-    m_pos(pos), 
     m_speed(speed), 
     m_texture(Texture2D()),
     m_texture_path(texture_path) {
