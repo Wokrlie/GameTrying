@@ -12,7 +12,8 @@ set(SOURCES src/main.cpp
     src/instance_manager.cpp
     src/actor.cpp
     vendor/source/nanosvg.cpp)
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_executable(${PROJECT_NAME} ${SOURCES}
+    src/plugin.cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib box2d)
 target_include_directories(${PROJECT_NAME} PRIVATE vendor/include)
 
