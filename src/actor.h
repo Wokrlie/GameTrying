@@ -23,7 +23,7 @@ class Actor {
         b2BodyDef m_body_def;
         b2BodyId m_body_id;
 
-        std::vector<Plugin> m_plugins;
+        std::vector<std::unique_ptr<Plugin>> m_plugins;
 
     protected:
         Rectangle m_rect;
