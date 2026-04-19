@@ -5,6 +5,7 @@ Actor::Actor(Vector2 pos, Vector2 size) :m_pos(pos), m_rect({pos.x, pos.y, size.
 void Actor::Init() {}
 
 void Actor::AddNewPlugin(std::unique_ptr<Plugin> p) {
+    p->Init();
     m_plugins.push_back(std::move(comp));
 }
 
