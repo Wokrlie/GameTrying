@@ -22,8 +22,8 @@ class Player : public Actor {
         Rectangle GetRect();
 
     private:
-        void InitResource() override; // This function will call the other resource manage function.
-        void InitPhysics(Vector2 pos, b2WorldId world_id) override;
+        // void InitResource() override; // This function will call the other resource manage function.
+        // void InitPhysics(Vector2 pos, b2WorldId world_id) override;
         
     private:
         int m_speed;
