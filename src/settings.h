@@ -15,6 +15,9 @@ struct Properties {
     std::vector<Color> background_colors;
 
     int player_speed;
+
+    float time_step;
+    int sub_step_count;
 };
 
 struct Status
