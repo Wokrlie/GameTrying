@@ -1,0 +1,23 @@
+# .clang-format
+BasedOnStyle: Google
+
+# 核心：花括号不换行（开括号与上一行同行）
+BreakBeforeBraces: Attach
+
+# 缩进宽度 4 空格
+IndentWidth: 4
+
+# 行宽 100 字符
+ColumnLimit: 100
+
+# 指针/引用靠左（int* ptr）
+PointerAlignment: Left
+
+# 允许短函数体放在同一行（如 int add(int a) { return a; }）
+AllowShortFunctionsOnASingleLine: Inline
+
+# Allow short loops statement on a single line
+AllowShortLoopsOnASingleLine: true
+
+# 允许短 if 语句单行（如 if (x) return;）
+AllowShortIfStatementsOnASingleLine: true

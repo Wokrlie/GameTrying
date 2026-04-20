@@ -20,3 +20,14 @@ target_link_libraries(${PROJECT_NAME} PRIVATE raylib box2d)
 target_include_directories(${PROJECT_NAME} PRIVATE vendor/include)
 
 add_definitions(-DPROJECT_ROOT="${CMAKE_SOURCE_DIR}")
+
+find_program(CLANG_FORMAT clang-format)
+if(CLANG_FORMAT)
+    add_custom_target(format
+        COMMAND ${CLANG_FORMAT} -i ${SOURCES}
+        COMMENT "Running clang-format on all source files"
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    )
+else()
+    message(WARNING "clang-format not found - 'format' target disabled")
+endif()
