@@ -4,7 +4,7 @@ class Timer {
     public:
         Timer(float cooldown = 0.0f);
 
-        void Update();
+        void Update(float dt);
         void Reset();
         bool ItsTimeToDo();
 

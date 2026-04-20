@@ -8,8 +8,8 @@ bool Timer::ItsTimeToDo() {
     return m_remaining <= 0;
 }
 
-void Timer::Update() {
-    this->m_remaining -= GetFrameTime();
+void Timer::Update(float dt) {
+    this->m_remaining -= dt;
 }
 
 void Timer::Reset() {
