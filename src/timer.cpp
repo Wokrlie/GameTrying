@@ -2,8 +2,7 @@
 
 #include <raylib.h>
 
-Timer::Timer(float duration) : m_duration(duration),
-                               m_remaining(duration) {}
+Timer::Timer(float duration) : m_duration(duration), m_remaining(duration) {}
 
 bool Timer::ItsTimeToDo() {
     return m_remaining <= 0;
