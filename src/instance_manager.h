@@ -6,6 +6,7 @@
 #include "player.h"
 #include "timer.h"
 #include "actor.h"
+#include "accumulator.h"
 #include "settings.h"
 
 class Instance {
@@ -26,4 +27,5 @@ class Instance {
         std::unique_ptr<Timer> m_timer;
         std::unique_ptr<Player> m_player;
         std::unique_ptr<Actor> m_ground;
+        std::unique_ptr<Accumulator> m_accumulator;
 };
