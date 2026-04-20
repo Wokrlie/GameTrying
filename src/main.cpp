@@ -11,7 +11,8 @@ void Init(Properties *properties) {
     properties->window_default_height = 720;
     properties->window_title = "Game";
 
-    InitWindow(properties->window_default_width, properties->window_default_height,
+    InitWindow(properties->window_default_width,
+               properties->window_default_height,
                properties->window_title);
 
     properties->background_colors = {GRAY, GREEN, RED, BLUE, YELLOW};
@@ -19,7 +20,7 @@ void Init(Properties *properties) {
     properties->player_speed = 500;
 
     properties->time_step = 1.0f / 60.0f;
-    properties->subStepCount = 4;
+    properties->sub_step_count = 4;
 }
 
 // IMPORTANT: The Update function shoudn't change the properties
