@@ -6,7 +6,6 @@
 class CollisionBox_plug : Plugin {
     public:
         void Init(b2Vec2 pos, b2Vec2 size, b2WorldId world_id);
-        void Update() override;
         void Shutdown() override;
 
     private:
