@@ -1,23 +1,46 @@
 # .clang-format
 BasedOnStyle: Google
 
-# 核心：花括号不换行（开括号与上一行同行）
+# 花括号不换行（开括号与上一行同行）
 BreakBeforeBraces: Attach
 
 # 缩进宽度 4 空格
 IndentWidth: 4
 
-# 行宽 100 字符
+# 行宽 100 字符（可按需调整）
 ColumnLimit: 100
 
-# 指针/引用靠左（int* ptr）
+# 指针/引用靠左
 PointerAlignment: Left
 
-# 允许短函数体放在同一行（如 int add(int a) { return a; }）
+# 允许短函数体单行
 AllowShortFunctionsOnASingleLine: Inline
 
-# Allow short loops statement on a single line
+# 允许短 if 单行
+AllowShortIfStatementsOnASingleLine: true
+
 AllowShortLoopsOnASingleLine: true
 
-# 允许短 if 语句单行（如 if (x) return;）
-AllowShortIfStatementsOnASingleLine: true
+# ---------- 参数列表格式化（增强可读性）----------
+# 对齐开括号后的参数（与开括号对齐或缩进）
+AlignAfterOpenBracket: Align
+
+# 禁止将参数打包到尽可能少的行（每个参数尽量独立一行）
+BinPackArguments: false
+
+# 禁止将函数声明的参数打包（对函数定义也生效）
+BinPackParameters: false
+
+# 允许函数调用的所有参数都放在下一行（而不是从括号后直接开始）
+AllowAllParametersOfDeclarationOnNextLine: true
+
+# 增加换行惩罚值，使换行更容易发生
+PenaltyExcessCharacter: 100
+PenaltyReturnTypeOnItsOwnLine: 60
+
+# 当参数换行时，连续参数的对齐方式（这里设为与开括号对齐）
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+
+# 列表初始化（如 Vector2{...}）的缩进
+Cpp11BracedListStyle: true
